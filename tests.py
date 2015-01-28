@@ -208,8 +208,8 @@ class RegressionSuite(unittest.TestCase):
         filter_by_baseball = driver.find_element_by_link_text("Football")
         filter_by_baseball.click()
         
-        # Varies with changing number of basketball sports teams, currently 182
-        for num in range(1,183):
+        # Varies with changing number of basketball sports teams, currently 181
+        for num in range(1,182):
             element = "//tr[%d]/td[4]" % (num)
             self.assertEqual("Football", 
                 driver.find_element_by_xpath(element).text)
@@ -263,7 +263,8 @@ class RegressionSuite(unittest.TestCase):
             "New York Giants")
         filter_by_NYGiants.click()
 
-        for num in range(1,63):
+        # 61 rows
+        for num in range(1,62):
             element = "//tr[%d]/td[7]" % (num)
             self.assertEqual("New York Giants", 
                 driver.find_element_by_xpath(element).text)
