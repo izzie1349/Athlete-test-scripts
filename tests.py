@@ -197,13 +197,27 @@ class RegressionSuite(unittest.TestCase):
         # Varies with changing number of baseball sports teams
         for num in range(1,31):
             element = "//tr[%d]/td[4]" % (num)
-            self.assertEqual("Baseball", driver.find_element_by_xpath(element).text)
+            self.assertEqual("Baseball", 
+                driver.find_element_by_xpath(element).text)
 
+
+    def test_filter_by_sport_football(self):
+        filter_drop_down = driver.find_element_by_link_text("SPORT")
+        filter_drop_down.click()
+
+        filter_by_baseball = driver.find_element_by_link_text("Football")
+        filter_by_baseball.click()
+        
+        # Varies with changing number of basketball sports teams, currently 182
+        for num in range(1,183):
+            element = "//tr[%d]/td[4]" % (num)
+            self.assertEqual("Football", 
+                driver.find_element_by_xpath(element).text)
 
 
     def tearDown(self):
         driver.quit()
 
 if __name__ == "__main__":
-    unittest.main()
+    HTMLTestRunner.main()
     
