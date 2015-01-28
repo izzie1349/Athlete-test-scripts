@@ -214,6 +214,34 @@ class RegressionSuite(unittest.TestCase):
             self.assertEqual("Football", 
                 driver.find_element_by_xpath(element).text)
 
+    def test_filter_by_football_NFL_NFCeast_DallasCowboys(self):
+        sport_filter = driver.find_element_by_link_text("SPORT")
+        sport_filter.click()
+        filter_by_football = driver.find_element_by_link_text("Football")
+        filter_by_football.click()
+
+        league_filter = driver.find_element_by_link_text("LEAGUE")
+        league_filter.click()
+        filter_by_NFL = driver.find_element_by_link_text("NFL")
+        filter_by_NFL.click()
+
+        division_filter = driver.find_element_by_link_text("DIVISION")
+        division_filter.click()
+        filter_by_NFCeast = driver.find_element_by_link_text("NFC East")
+        filter_by_NFCeast.click()
+
+        team_filter = driver.find_element_by_link_text("TEAM")
+        team_filter.click()
+        filter_by_dallasCowboys = driver.find_element_by_link_text(
+            "Dallas Cowboys")
+        filter_by_dallasCowboys.click()
+
+        for num in range(1,121):
+            element = "//tr[%d]/td[7]" % (num)
+            self.assertEqual("Dallas Cowboys", 
+                driver.find_element_by_xpath(element).text)
+
+
 
     def tearDown(self):
         driver.quit()
